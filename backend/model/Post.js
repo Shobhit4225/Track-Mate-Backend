@@ -16,7 +16,7 @@ const postSchema = new Schema({
         require : true
     },
     postImage : {
-        type : String,
+        type : Buffer,
         require : true
     },
     likes : {

@@ -1,6 +1,8 @@
 import mongoose, { mongo } from "mongoose";
 import Post from "../model/Post";
 import User from "../model/User";
+const multer = require('multer');
+
 import { response } from "express";
 
 export const getAllPosts = async (req , res , next) => {
@@ -21,7 +23,8 @@ export const getAllPosts = async (req , res , next) => {
 }
 
 export const addPosts = async(req , res , next) => {
-    const { caloriesBurned , avgSpeed , duration , postImage ,likes, user , userProfile} = req.body;
+    const postImage = req.file.buffer;
+    const { caloriesBurned , avgSpeed , duration ,likes, user , userProfile} = req.body;
 
     let existingUser;
     try{
