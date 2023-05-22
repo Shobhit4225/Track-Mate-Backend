@@ -23,7 +23,11 @@ export const getAllPosts = async (req , res , next) => {
 }
 
 export const addPosts = async(req , res , next) => {
-    const postImage = req.file.buffer;
+    //const postImage = req.file.buffer;
+    const bitmapData = req.body.postImage;
+
+  // Decode the binary string into a Buffer
+  const bitmapBuffer = Buffer.from(bitmapData, 'binary');
     const { caloriesBurned , avgSpeed , duration ,likes, user , userProfile} = req.body;
 
     let existingUser;
@@ -40,7 +44,7 @@ export const addPosts = async(req , res , next) => {
     }
 
     const post = new Post({
-        caloriesBurned,avgSpeed,duration,postImage ,likes,user,userProfile,
+        caloriesBurned,avgSpeed,duration,postImage:bitmapBuffer ,likes,user,userProfile,
     });
 
     try {
