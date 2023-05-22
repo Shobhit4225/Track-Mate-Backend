@@ -4,7 +4,7 @@ import { addPosts, getAllPosts, getById, makeLike, updatePost } from '../control
 const postRouter = express.Router();
 
 postRouter.get("/",getAllPosts);
-postRouter.post("/add" , upload.single('bitmap'),addPosts);
+postRouter.post("/add",addPosts);
 postRouter.post("/like/:postId",makeLike);
 postRouter.put("/update/:id",updatePost);
 postRouter.get("/:id" , getById);
