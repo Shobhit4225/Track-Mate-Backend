@@ -21,7 +21,7 @@ export const getAllPosts = async (req , res , next) => {
 }
 
 export const addPosts = async(req , res , next) => {
-    const { caloriesBurned , avgSpeed , duration , postImage ,likes, user , userProfile} = req.body;
+    const { caloriesBurned , avgSpeed , duration , postImage ,likes, user , userProfile , userName , date} = req.body;
 
     let existingUser;
     try{
@@ -37,7 +37,7 @@ export const addPosts = async(req , res , next) => {
     }
 
     const post = new Post({
-        caloriesBurned,avgSpeed,duration,postImage ,likes,user,userProfile,
+        caloriesBurned,avgSpeed,duration,postImage ,likes,user,userProfile,userName , date
     });
 
     try {

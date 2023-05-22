@@ -31,6 +31,14 @@ const postSchema = new Schema({
     userProfile : {
         type : String,
         require : true
+    },
+    userName : {
+        type : String,
+        require : true
+    },
+    date : {
+        type : String,
+        require : true
     }
 })
 
