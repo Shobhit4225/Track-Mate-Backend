@@ -36,5 +36,21 @@ export const createUser = async(req , res , next) => {
 		console.log(error);
 		next(error);
 	}
-
 } 
+
+export const getById = async (req , res , next) => {
+    const id = req.params.id;
+    let user;
+    try {
+        user = await User.findById(id);
+    } catch (error) {
+        return console.log(error);
+    }
+
+    if(!user){
+        return res.status(404).json({
+            message : "No User Found"
+        })
+    }
+    return res.status(200).json({user});
+};
