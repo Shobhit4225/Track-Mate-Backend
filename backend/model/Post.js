@@ -37,7 +37,7 @@ const postSchema = new Schema({
         require : true
     },
     date : {
-        type : Long,
+        type : String,
         require : true
     }
 })
