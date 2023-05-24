@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/",getAllUser);
 router.post("/createUser",createUser);
 router.get("/:id",getById);
-router.post("/:userId/liked-posts" , updateLikedPost)
+router.post("/:userId" , updateLikedPost)
 
 export default router;
