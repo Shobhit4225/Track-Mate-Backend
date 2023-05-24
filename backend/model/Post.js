@@ -39,7 +39,7 @@ const postSchema = new Schema({
     date : {
         type : String,
         require : true
-    }
+    },
 })
 
 export default mongoose.model("Post" , postSchema);
