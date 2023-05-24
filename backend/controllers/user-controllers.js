@@ -40,7 +40,7 @@ export const createUser = async(req , res , next) => {
 
 export const updateLikedPost = async(req , res , next) => {
 	try {
-		const userId = req.params.id;
+		const userId = req.params.userId;
 		const postId = req.body.postId;
 		const likes = req.body.likes;
 		
@@ -62,9 +62,6 @@ export const updateLikedPost = async(req , res , next) => {
 		  user.likedPosts.splice(likedPostIndex, 1);
 		}
 		
-		post = await Post.findByIdAndUpdate(postId , {
-            likes
-        })
 		
 		// Save the updated user
 		await user.save();
