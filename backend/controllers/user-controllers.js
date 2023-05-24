@@ -1,5 +1,6 @@
 import { json } from "express";
 import User from "../model/User"
+import Post from "../model/Post";
 
 export const getAllUser = async(req , res , next) => {
 	let users;
@@ -61,7 +62,11 @@ export const updateLikedPost = async(req , res , next) => {
 		  // If the post ID is already present, remove it from the likedPosts array
 		  user.likedPosts.splice(likedPostIndex, 1);
 		}
-		
+
+		let post;
+		post = await Post.findByIdAndUpdate(postId , {
+            likes
+        })
 		
 		// Save the updated user
 		await user.save();
