@@ -42,6 +42,7 @@ export const updateLikedPost = async(req , res , next) => {
 	try {
 		const userId = req.params.userId;
 		const postId = req.body.postId;
+		const likes = req.body.likes;
 		
 		// Find the user by ID
 		const user = await User.findById(userId)
@@ -60,6 +61,10 @@ export const updateLikedPost = async(req , res , next) => {
 		  // If the post ID is already present, remove it from the likedPosts array
 		  user.likedPosts.splice(likedPostIndex, 1);
 		}
+		
+		post = await Post.findByIdAndUpdate(postId , {
+            likes
+        })
 		
 		// Save the updated user
 		await user.save();
