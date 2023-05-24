@@ -40,7 +40,7 @@ export const createUser = async(req , res , next) => {
 
 export const updateLikedPost = async(req , res , next) => {
 	try {
-		const userId = req.params.userId;
+		const userId = req.params.id;
 		const postId = req.body.postId;
 		const likes = req.body.likes;
 		
