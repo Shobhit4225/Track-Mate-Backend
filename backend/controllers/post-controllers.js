@@ -105,8 +105,6 @@ export const updatePost = async(req , res , next) => {
             message : "Unable to Update"
         });
     }
-
-
     return res.status(200).json({post});
 };
 
