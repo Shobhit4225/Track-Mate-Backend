@@ -3,22 +3,46 @@ import Post from "../model/Post";
 import User from "../model/User";
 import { response } from "express";
 
-export const getAllPosts = async (req , res , next) => {
+export const getAllPosts = async (req, res, next) => {
     let posts;
     try {
-        posts = await Post.find();
+      posts = await Post.find();
     } catch (error) {
-        return console.log(error);
+      console.log(error);
+      return res.sendStatus(500).send(error.message);
     }
-
-    if(!posts){
-        return res.status(404).json({
-            message : "No Posts"
-        });
+  
+    if (!posts || posts.length === 0) {
+      return res.status(404).json({
+        message: "No Posts"
+      });
     }
-
-    return res.status(200).json({posts});
-}
+  
+    try {
+      let { page, size } = req.query;
+      if (!page) {
+        page = 1;
+      }
+      if (!size) {
+        size = 5;
+      }
+      const limit = parseInt(size);
+      const skip = (parseInt(page) - 1) * limit;
+      const totalCount = posts.length;
+      const paginatedPosts = posts.slice(skip, skip + limit);
+  
+      return res.status(200).json({
+        posts: paginatedPosts,
+        limit,
+        skip,
+        totalCount
+      });
+    } catch (error) {
+      console.log(error);
+      return res.sendStatus(500).send(error.message);
+    }
+  }
+  
 
 export const addPosts = async(req , res , next) => {
     const { caloriesBurned , avgSpeed , duration , postImage ,likes, user , userProfile , userName , date} = req.body;
