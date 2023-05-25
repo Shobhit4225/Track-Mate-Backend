@@ -3,7 +3,7 @@ import { addPosts, getAllPosts, getById, makeLike, updatePost } from '../control
 
 const postRouter = express.Router();
 
-postRouter.get("/",getAllPosts);
+postRouter.get("/getPost",getAllPosts);
 postRouter.post("/add",addPosts);
 postRouter.post("/like/:postId",makeLike);
 postRouter.put("/update/:id",updatePost);
